@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+User.create!(name: 'joe', email: 'joe@email.com', password: 'bloggs', password_confirmation: 'bloggs')
+
+50.times do
+  todo = Todo.create(title: Faker::Lorem.word, created_by: User.first.id)
+  todo.items.create(name: Faker::Lorem.word, done: false)
+end
+
+# http :3000/auth/login email=joe@email.com password=bloggs
+
+# http :3000/todos Accept:'application/vnd.todos.v1+json' Authorization:''
+
+# http :3000/todos page==1 Accept:'application/vnd.todos.v1+json' Authorization:''
+
+# http :3000/todos page==2 Accept:'application/vnd.todos.v1+json' Authorization:''
